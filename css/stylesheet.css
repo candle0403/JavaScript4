@@ -1,0 +1,15 @@
+/** @format */
+
+main {
+	border-top: 1px solid lightslategray;
+	border-bottom: 1px solid lightslategray;
+}
+
+.btn {
+	margin-top: 16px;
+}
+
+#answers > button {
+	margin-top: 14px;
+	display: block;
+}
