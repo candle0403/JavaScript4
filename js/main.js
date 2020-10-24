@@ -46,7 +46,7 @@
  let score = 0;
 
  
- btn.addEventListener('click', ()=> {
+ btn.addEventListener('click', () => {
    score = 0;
    btn.hidden = true;
   fetchQuizData(1);
@@ -70,7 +70,7 @@
   }
   
   const makeQuiz = (quizInstance, index) => {
-    btn.hidden = true;
+   btn.hidden = true;
    heading.innerHTML = `問題${index}`;
    genre.innerHTML = `【ジャンル】${quizInstance.getQuizCategory(index)}`;
    difficulty.innerHTML = `【難易度】${quizInstance.getQuizDifficulty(index)}`;
@@ -86,12 +86,12 @@
    answers.appendChild(choiceAnswer3);
    answers.appendChild(choiceAnswer4);
    
-   answers.addEventListener('click', ()=> {
+   answers.addEventListener('click', () => {
      while(answers.firstChild) {
        answers.removeChild(answers.firstChild);
       }
       
-      if(index === quizInstance.getQuizzesLength() ) {
+      if(index === quizInstance.getQuizzesLength()) {
         heading.innerHTML = `あなたの正解数は${score}です！`;
         mainText.innerHTML = '再チャレンジしたい場合は以下のボタンをクリック';
         
@@ -105,7 +105,7 @@
     
   }
   
-  choiceAnswer1.addEventListener('click', ()=> {
+  choiceAnswer1.addEventListener('click', () => {
     score++;
     console.log(score);
   });
