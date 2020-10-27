@@ -6,6 +6,18 @@
   const choiceAnswer2 = document.createElement('button');
   const choiceAnswer3 = document.createElement('button');
   const choiceAnswer4 = document.createElement('button');
+
+  const choiceAnswers = [choiceAnswer1, choiceAnswer2, choiceAnswer3, choiceAnswer4];
+
+  function shuffle(choiceAnswers) {
+    for (let i = choiceAnswers.length - 1; i > 0; i--) {
+      const  j = Math.floor(Math.random() * (i + 1));
+      [choiceAnswers[j], choiceAnswers[i]] = [choiceAnswers[i], choiceAnswers[j]];
+    }
+    return choiceAnswers;
+  }
+
+  
   
   class Quiz {
     constructor(quizData){
@@ -46,7 +58,7 @@
  let score = 0;
 
  
- btn.addEventListener('click', ()=> {
+ btn.addEventListener('click', () => {
    score = 0;
    btn.hidden = true;
   fetchQuizData(1);
@@ -70,7 +82,7 @@
   }
   
   const makeQuiz = (quizInstance, index) => {
-    btn.hidden = true;
+   btn.hidden = true;
    heading.innerHTML = `問題${index}`;
    genre.innerHTML = `【ジャンル】${quizInstance.getQuizCategory(index)}`;
    difficulty.innerHTML = `【難易度】${quizInstance.getQuizDifficulty(index)}`;
@@ -80,18 +92,22 @@
    choiceAnswer2.innerHTML = `${quizInstance.getIncorrect_answers(index)}`;
    choiceAnswer3.innerHTML = `${quizInstance.getIncorrect_answers(index)}`;
    choiceAnswer4.innerHTML = `${quizInstance.getIncorrect_answers(index)}`;
+
+  const shuffledChoices = shuffle(choiceAnswers);
+
    
-   answers.appendChild(choiceAnswer1);
-   answers.appendChild(choiceAnswer2);
-   answers.appendChild(choiceAnswer3);
-   answers.appendChild(choiceAnswer4);
+   shuffledChoices.forEach(choice => {
+    answers.appendChild(choice);
+    });
    
-   answers.addEventListener('click', ()=> {
+   
+   answers.addEventListener('click', () => {
      while(answers.firstChild) {
        answers.removeChild(answers.firstChild);
       }
       
-      if(index === quizInstance.getQuizzesLength() ) {
+      
+      if(index === quizInstance.getQuizzesLength()) {
         heading.innerHTML = `あなたの正解数は${score}です！`;
         mainText.innerHTML = '再チャレンジしたい場合は以下のボタンをクリック';
         
@@ -105,7 +121,7 @@
     
   }
   
-  choiceAnswer1.addEventListener('click', ()=> {
+  choiceAnswer1.addEventListener('click', () => {
     score++;
     console.log(score);
   });
